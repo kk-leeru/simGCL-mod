@@ -1,0 +1,462 @@
+ratings=./dataset/yelp2018/train.txt
+ratings.setup=-columns 0 1 2
+model.name=SimGCL
+evaluation.setup=-testSet ./dataset/yelp2018/test.txt -b 1 
+item.ranking=on -topN 20
+num.factors=64
+num.max.epoch=20
+batch_size=2048
+learnRate=-init 0.001 -max 1
+reg.lambda=-u 0.0001 -i 0.0001 -b 0.2 -s 0.2
+SimGCL=-n_layer 2 -lambda 0.5 -eps 0.1
+output.setup=on -dir ./results/
+
+result 
+Top 20
+Precision:0.03285809018567639
+Recall:0.07282925115624359
+F1:0.04528508470858758
+NDCG:0.05998978089905746   #natural 
+
+result (5 epochs)
+Top 20
+Precision:0.027545155993431856
+Recall:0.06180042738204937
+F1:0.0381060226680766
+NDCG:0.0511084695424217
+
+
+test1
+ratings=./dataset/yelp2018/train.txt
+ratings.setup=-columns 0 1 2
+model.name=SimGCL
+evaluation.setup=-testSet ./dataset/yelp2018/test.txt -b 1 
+item.ranking=on -topN 20
+num.factors=64
+num.max.epoch=20
+batch_size=2048
+learnRate=-init 0.001 -max 1
+reg.lambda=-u 0.0001 -i 0.0001 -b 0.2 -s 0.2
+SimGCL=-n_layer 4 -lambda 0.5 -eps 0.1   //4 layers
+output.setup=on -dir ./results/
+
+
+test2 //change eps for random noise to 0.2, layer back to 2
+ratings=./dataset/yelp2018/train.txt
+ratings.setup=-columns 0 1 2
+model.name=SimGCL
+evaluation.setup=-testSet ./dataset/yelp2018/test.txt -b 1 
+item.ranking=on -topN 20
+num.factors=64
+num.max.epoch=20
+batch_size=2048
+learnRate=-init 0.001 -max 1
+reg.lambda=-u 0.0001 -i 0.0001 -b 0.2 -s 0.2
+SimGCL=-n_layer 2 -lambda 0.5 -eps 0.2
+output.setup=on -dir ./results/
+
+result
+Top 20
+Precision:0.03243810786914235
+Recall:0.07210758483508681
+F1:0.04474662809268007
+NDCG:0.059384785701749376
+
+test3// change eps to (from 0.1) to 0.8
+ratings=./dataset/yelp2018/train.txt
+ratings.setup=-columns 0 1 2
+model.name=SimGCL
+evaluation.setup=-testSet ./dataset/yelp2018/test.txt -b 1 
+item.ranking=on -topN 20
+num.factors=64
+num.max.epoch=5
+batch_size=2048
+learnRate=-init 0.001 -max 1
+reg.lambda=-u 0.0001 -i 0.0001 -b 0.2 -s 0.2
+SimGCL=-n_layer 2 -lambda 0.5 -eps 0.8
+output.setup=on -dir ./results/
+
+result epoch 20
+Top 20
+Precision:0.03194233926992548
+Recall:0.07085277945358302
+F1:0.044033287720810346
+NDCG:0.05829967950176356
+
+result epoch 5
+Top 20
+Precision:0.0314955159782746
+Recall:0.06985076942553642
+F1:0.04341522761827893
+NDCG:0.057478836255308446
+
+test4// change eps to 0.08
+ratings=./dataset/yelp2018/train.txt
+ratings.setup=-columns 0 1 2
+model.name=SimGCL
+evaluation.setup=-testSet ./dataset/yelp2018/test.txt -b 1 
+item.ranking=on -topN 20
+num.factors=64
+num.max.epoch=5
+batch_size=2048
+learnRate=-init 0.001 -max 1
+reg.lambda=-u 0.0001 -i 0.0001 -b 0.2 -s 0.2
+SimGCL=-n_layer 2 -lambda 0.5 -eps 0.08
+output.setup=on -dir ./results/
+
+result epoch 5
+Top 20
+Precision:0.027567260325881016
+Recall:0.06180999551626865
+F1:0.0381289897767247
+NDCG:0.05155656199960842
+
+
+test5// change lambda to 0.7 (from 0.5) 
+ratings=./dataset/yelp2018/train.txt
+ratings.setup=-columns 0 1 2
+model.name=SimGCL
+evaluation.setup=-testSet ./dataset/yelp2018/test.txt -b 1 
+item.ranking=on -topN 20
+num.factors=64
+num.max.epoch=20
+batch_size=2048
+learnRate=-init 0.001 -max 1
+reg.lambda=-u 0.0001 -i 0.0001 -b 0.2 -s 0.2
+SimGCL=-n_layer 2 -lambda 0.7 -eps 0.1
+output.setup=on -dir ./results/
+
+test6// dynamic_eps [0.1, 0.05]
+//modify code 
+
+Top 20
+Precision:0.03260862700517873
+Recall:0.07227322163681625
+F1:0.044940674813275794
+NDCG:0.05987174191633695
+
+test7// eps 0.05
+ratings=./dataset/yelp2018/train.txt
+ratings.setup=-columns 0 1 2
+model.name=SimGCL
+evaluation.setup=-testSet ./dataset/yelp2018/test.txt -b 1 
+item.ranking=on -topN 20
+num.factors=64
+num.max.epoch=20
+batch_size=2048
+learnRate=-init 0.001 -max 1
+reg.lambda=-u 0.0001 -i 0.0001 -b 0.2 -s 0.2
+SimGCL=-n_layer 2 -lambda 0.5 -eps 0.05
+output.setup=on -dir ./results/
+
+Top 20
+Precision:0.03288651004168246
+Recall:0.07285661334564203
+F1:0.045317362862796674
+NDCG:0.060003345243756626
+
+test7// eps 0.05 and temperature 0.3
+ratings=./dataset/yelp2018/train.txt
+ratings.setup=-columns 0 1 2
+model.name=SimGCL
+evaluation.setup=-testSet ./dataset/yelp2018/test.txt -b 1 
+item.ranking=on -topN 20
+num.factors=64
+num.max.epoch=20
+batch_size=2048
+learnRate=-init 0.001 -max 1
+reg.lambda=-u 0.0001 -i 0.0001 -b 0.2 -s 0.2
+SimGCL=-n_layer 2 -lambda 0.5 -eps 0.05
+output.setup=on -dir ./results/
+
+
+test8// hybrid contrast instead of group contrast with eps 0.05 
+Top 20
+Precision:0.03291177213591007
+Recall:0.07314630737197468
+F1:0.045397288202464504
+NDCG:0.0602297583785247
+
+or
+
+*Best Performance* 
+Epoch: 15, Precision:0.032769672855879756 | Recall:0.072792945565403 | F1:0.04519404781860152 | MDCG:0.060018691140503386
+------
+
+test9 //3 layers (performance decrease)
+ratings=./dataset/yelp2018/train.txt
+ratings.setup=-columns 0 1 2
+model.name=SimGCL
+evaluation.setup=-testSet ./dataset/yelp2018/test.txt -b 1 
+item.ranking=on -topN 20
+num.factors=64
+num.max.epoch=20
+batch_size=2048
+learnRate=-init 0.001 -max 1
+reg.lambda=-u 0.0001 -i 0.0001 -b 0.2 -s 0.2
+SimGCL=-n_layer 3 -lambda 0.5 -eps 0.05
+output.setup=on -dir ./results/
+
+
+*Best Performance* 
+Epoch: 20, Precision:0.0325454717696097 | Recall:0.07248066451171432 | F1:0.044920578900283094 | MDCG:0.059529866208556034
+
+
+
+//same config, triple loss margin=1.0 (worse performance but fast convergence) 
+ratings=./dataset/yelp2018/train.txt
+ratings.setup=-columns 0 1 2
+model.name=SimGCL
+evaluation.setup=-testSet ./dataset/yelp2018/test.txt -b 1 
+item.ranking=on -topN 20
+num.factors=64
+num.max.epoch=25
+batch_size=2048
+learnRate=-init 0.001 -max 1
+reg.lambda=-u 0.0001 -i 0.0001 -b 0.2 -s 0.2
+SimGCL=-n_layer 2 -lambda 0.5 -eps 0.05
+output.setup=on -dir ./results/
+
+*Best Performance* 
+Epoch: 16, Precision:0.03290703549324239 | Recall:0.07329979918941316 | F1:0.04542229510522209 | MDCG:0.06005260881583532
+
+//triple loss margin=0.5
+ratings=./dataset/yelp2018/train.txt
+ratings.setup=-columns 0 1 2
+model.name=SimGCL
+evaluation.setup=-testSet ./dataset/yelp2018/test.txt -b 1 
+item.ranking=on -topN 20
+num.factors=64
+num.max.epoch=25
+batch_size=2048
+learnRate=-init 0.001 -max 1
+reg.lambda=-u 0.0001 -i 0.0001 -b 0.2 -s 0.2
+SimGCL=-n_layer 2 -lambda 0.5 -eps 0.05
+output.setup=on -dir ./results/
+
+*Best Performance* 
+Epoch: 16, Precision:0.03262283693318176 | Recall:0.072501893638274 | F1:0.044998307071057966 | MDCG:0.05990826351483687
+
+//triple loss margin=0.7 
+ratings=./dataset/yelp2018/train.txt
+ratings.setup=-columns 0 1 2
+model.name=SimGCL
+evaluation.setup=-testSet ./dataset/yelp2018/test.txt -b 1 
+
+*Best Performance* 
+Epoch: 14, Precision:0.03289124668435013 | Recall:0.07285101333266482 | F1:0.04532077620326998 | MDCG:0.060019708529951095
+
+//?? loss margin 0.9?
+item.ranking=on -topN 20
+num.factors=64
+num.max.epoch=20
+batch_size=2048
+learnRate=-init 0.001 -max 1
+reg.lambda=-u 0.0001 -i 0.0001 -b 0.2 -s 0.2
+SimGCL=-n_layer 2 -lambda 0.5 -eps 0.05
+output.setup=on -dir ./results/
+
+Best Performance 
+Epoch: 15, Precision:0.03294334975369458 | Recall:0.072931783256412 | F1:0.04538586494615839 | MDCG:0.06012019711763817
+
+//triple loss margin = 1.2
+ratings=./dataset/yelp2018/train.txt
+ratings.setup=-columns 0 1 2
+model.name=SimGCL
+evaluation.setup=-testSet ./dataset/yelp2018/test.txt -b 1 
+item.ranking=on -topN 20
+num.factors=64
+num.max.epoch=20
+batch_size=2048
+learnRate=-init 0.001 -max 1
+reg.lambda=-u 0.0001 -i 0.0001 -b 0.2 -s 0.2
+SimGCL=-n_layer 2 -lambda 0.5 -eps 0.05
+output.setup=on -dir ./results/
+
+*Best Performance* 
+Epoch: 14, Precision:0.03289124668435013 | Recall:0.07285101333266482 | F1:0.04532077620326998 | MDCG:0.060019708529951095
+
+//triple loss margin = 1.4
+ratings=./dataset/yelp2018/train.txt
+ratings.setup=-columns 0 1 2
+model.name=SimGCL
+evaluation.setup=-testSet ./dataset/yelp2018/test.txt -b 1 
+item.ranking=on -topN 20
+num.factors=64
+num.max.epoch=20
+batch_size=2048
+learnRate=-init 0.001 -max 1
+reg.lambda=-u 0.0001 -i 0.0001 -b 0.2 -s 0.2
+SimGCL=-n_layer 2 -lambda 0.5 -eps 0.05
+output.setup=on -dir ./results/
+
+*Best Performance* 
+Epoch: 15, Precision:0.032768093974990524 | Recall:0.07263277473228327 | F1:0.04516163134673533 | MDCG:0.059966684697012024
+
+
+//triple loss margin = 0.9
+ratings=./dataset/yelp2018/train.txt
+ratings.setup=-columns 0 1 2
+model.name=SimGCL
+evaluation.setup=-testSet ./dataset/yelp2018/test.txt -b 1 
+item.ranking=on -topN 20
+num.factors=64
+num.max.epoch=20
+batch_size=2048
+learnRate=-init 0.001 -max 1
+reg.lambda=-u 0.0001 -i 0.0001 -b 0.2 -s 0.2
+SimGCL=-n_layer 2 -lambda 0.5 -eps 0.05
+output.setup=on -dir ./results/
+
+*Best Performance* 
+Epoch: 16, Precision:0.03286282682834407 | Recall:0.07272466011200254 | F1:0.04526933978002821 | MDCG:0.05994789458869018
+
+
+
+//triple loss margin = 0.7 (optimized), modify weight 1.5*loss margin
+ratings=./dataset/yelp2018/train.txt
+ratings.setup=-columns 0 1 2
+model.name=SimGCL
+evaluation.setup=-testSet ./dataset/yelp2018/test.txt -b 1 
+item.ranking=on -topN 20
+num.factors=64
+num.max.epoch=20
+batch_size=2048
+learnRate=-init 0.001 -max 1
+reg.lambda=-u 0.0001 -i 0.0001 -b 0.2 -s 0.2
+SimGCL=-n_layer 2 -lambda 0.5 -eps 0.05
+output.setup=on -dir ./results/
+
+*Best Performance* 
+Epoch: 15, Precision:0.033012820512820513 | Recall:0.07315814530040404 | F1:0.04549561551699199 | MDCG:0.06020912657712881
+------------------------------------------------------------------------------------------------------------------------
+test: ['Precision:0.03265125678918782', 'Recall:0.07246669828512567', 'F1:0.04501854650234572', 'NDCG:0.05955337505899147'], <class 'list'>
+recall: 0.07246669828512567
+
+//triple loss margin = 0.7 (optimized), modify weight 2*loss margin
+ratings=./dataset/yelp2018/train.txt
+ratings.setup=-columns 0 1 2
+model.name=SimGCL
+evaluation.setup=-testSet ./dataset/yelp2018/test.txt -b 1 
+item.ranking=on -topN 20
+num.factors=64
+num.max.epoch=20
+batch_size=2048
+learnRate=-init 0.001 -max 1
+reg.lambda=-u 0.0001 -i 0.0001 -b 0.2 -s 0.2
+SimGCL=-n_layer 2 -lambda 0.5 -eps 0.05
+output.setup=on -dir ./results/
+
+*Best Performance* 
+Epoch: 15, Precision:0.03273335859542756 | Recall:0.07258314258005037 | F1:0.045119046066620414 | MDCG:0.060078492651526844
+------------------------------------------------------------------------------------------------------------------------
+test: ['Precision:0.03235758494379184', 'Recall:0.07182188720969007', 'F1:0.04461498543181686', 'NDCG:0.05941884941923315'], <class 'list'>
+recall: 0.07182188720969007
+
+//non-linear activation, no triplet loss  
+ratings=./dataset/yelp2018/train.txt
+ratings.setup=-columns 0 1 2
+model.name=SimGCL
+evaluation.setup=-testSet ./dataset/yelp2018/test.txt -b 1 
+item.ranking=on -topN 20
+num.factors=64
+num.max.epoch=20
+batch_size=2048
+learnRate=-init 0.001 -max 1
+reg.lambda=-u 0.0001 -i 0.0001 -b 0.2 -s 0.2
+SimGCL=-n_layer 2 -lambda 0.5 -eps 0.05
+output.setup=on -dir ./results/
+
+*Best Performance* 
+Epoch: 20, Precision:0.016999810534293294 | Recall:0.036333408930389326 | F1:0.023162339498017184 | MDCG:0.02978241195844691
+
+
+//emb += emb, early convergence 
+ratings=./dataset/yelp2018/train.txt
+ratings.setup=-columns 0 1 2
+model.name=SimGCL
+evaluation.setup=-testSet ./dataset/yelp2018/test.txt -b 1 
+item.ranking=on -topN 20
+num.factors=64
+num.max.epoch=20
+batch_size=2048
+learnRate=-init 0.001 -max 1
+reg.lambda=-u 0.0001 -i 0.0001 -b 0.2 -s 0.2
+SimGCL=-n_layer 2 -lambda 0.5 -eps 0.05
+output.setup=on -dir ./results/
+
+*Best Performance* 
+Epoch: 11, Precision:0.032499684223822156 | Recall:0.07183438483598711 | F1:0.044752300847076106 | MDCG:0.05929075194049405
+------------------------------------------------------------------------------------------------------------------------
+test: ['Precision:0.03174655803966149', 'Recall:0.07020394154235432', 'F1:0.04372187510458272', 'NDCG:0.05796862201857163'], <class 'list'>
+recall: 0.07020394154235432
+
+//embedding (num.factors) size to 128
+ratings=./dataset/yelp2018/train.txt
+ratings.setup=-columns 0 1 2
+model.name=SimGCL
+evaluation.setup=-testSet ./dataset/yelp2018/test.txt -b 1 
+item.ranking=on -topN 20
+num.factors=128
+num.max.epoch=20
+batch_size=2048
+learnRate=-init 0.001 -max 1
+reg.lambda=-u 0.0001 -i 0.0001 -b 0.2 -s 0.2
+SimGCL=-n_layer 2 -lambda 0.5 -eps 0.05
+output.setup=on -dir ./results/
+*Best Performance* 
+Epoch: 13, Precision:0.03343438171024378 | Recall:0.07420912079579589 | F1:0.046099133032744224 | MDCG:0.061209010772778454
+
+//embeddding (num.factors) size to 256 
+ratings=./dataset/yelp2018/train.txt
+ratings.setup=-columns 0 1 2
+model.name=SimGCL
+evaluation.setup=-testSet ./dataset/yelp2018/test.txt -b 1 
+item.ranking=on -topN 20
+num.factors=256
+num.max.epoch=20
+batch_size=2048
+learnRate=-init 0.001 -max 1
+reg.lambda=-u 0.0001 -i 0.0001 -b 0.2 -s 0.2
+SimGCL=-n_layer 2 -lambda 0.5 -eps 0.05
+output.setup=on -dir ./results/
+
+*Best Performance* 
+Epoch: 12, Precision:0.03391278261967917 | Recall:0.07538178236180443 | F1:0.04678011206052083 | MDCG:0.06210546383224893
+
+
+
+//   loss = rec_loss + 1.5*triplet_main_loss
+ratings=./dataset/yelp2018/train.txt
+ratings.setup=-columns 0 1 2
+model.name=SimGCL
+evaluation.setup=-testSet ./dataset/yelp2018/test.txt -b 1 
+item.ranking=on -topN 20
+num.factors=256
+num.max.epoch=20
+batch_size=2048
+learnRate=-init 0.001 -max 1
+reg.lambda=-u 0.0001 -i 0.0001 -b 0.2 -s 0.2
+SimGCL=-n_layer 2 -lambda 0.5 -eps 0.05
+output.setup=on -dir ./results/
+
+*Best Performance* 
+Epoch: 20, Precision:0.024471074902109386 | Recall:0.053629896811039274 | F1:0.03360729560895832 | MDCG:0.043937496930582944
+
+////   loss = rec_loss + 1.5*triplet_main_loss， learning rate from 0.0001 to 0.01 
+ratings=./dataset/yelp2018/train.txt
+ratings.setup=-columns 0 1 2
+model.name=SimGCL
+evaluation.setup=-testSet ./dataset/yelp2018/test.txt -b 1 
+item.ranking=on -topN 20
+num.factors=256
+num.max.epoch=20
+batch_size=2048
+learnRate=-init 0.001 -max 1
+reg.lambda=-u 0.001 -i 0.0001 -b 0.2 -s 0.2
+SimGCL=-n_layer 2 -lambda 0.5 -eps 0.05
+output.setup=on -dir ./results/
+
+
+
+

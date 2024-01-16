@@ -1,0 +1,12 @@
+Top 20
+Precision:0.03285809018567639
+Recall:0.07282925115624359
+F1:0.04528508470858758
+NDCG:0.05998978089905746   #natural 
+
+"""
+# Precision is about the accuracy of positive predictions. (relevant item/ total item retrieved)
+# *Recall is about capturing all the possible positive cases. (relevant item/ total item in dataset)
+# F1-Score harmoniously balances Precision and Recall. 
+# *NDCG (Normalized Discounted Cumulative Gain): evaluates the quality of ranked results, considering both relevance and position.
+"""
